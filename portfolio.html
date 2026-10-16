@@ -99,6 +99,120 @@
         <script defer src="assets/js/portfolio.js?v=logo-hd1"></script>
         <script defer src="assets/js/vendor/lenis.min.js"></script>
         <script defer src="assets/js/animations.js?v=motion1"></script>
+        <style>
+            
+:root{
+  --paper:#000000; --card:#0b0d08; --ink:#f4f6ee; --muted:#9aa18f;
+  --line:#262a20; --lime:#c8f31d; --forest:#0f1609; --dark:#000;
+  --head:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
+  --wrap:1180px;
+}
+
+
+@media(max-width:860px){.nav a:not(.btn){display:none}}
+
+ntro p{max-width:56ch;color:var(--muted);margin-top:22px;font-size:1.1rem}
+
+/* filter */
+.filters{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:14px 0}
+.filters .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{font:500 .92rem var(--body);background:transparent;border:1.5px solid var(--ink);color:var(--ink);padding:8px 18px;border-radius:999px;cursor:pointer;transition:background .15s}
+.chip:hover{background:#1a1d15}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.count{margin-left:auto;font-size:.9rem;color:var(--muted)}
+
+/* project rows */
+.list{padding:56px 0 24px;display:grid;gap:72px}
+.proj{display:grid;grid-template-columns:7fr 8fr;gap:48px;align-items:center}
+.proj:nth-child(even){grid-template-columns:5fr 7fr}
+.proj:nth-child(even) .shot{order:2}
+.proj[hidden]{display:none}
+
+.shot{display:block;text-decoration:none;background:var(--card);border:1.5px solid #3a3f31;border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 #1c2016;transition:transform .25s,box-shadow .25s}
+.shot:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--lime);border-color:var(--lime)}
+.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1.5px solid #3a3f31;background:#12150d}
+.bar i{width:10px;height:10px;border-radius:50%;border:1.5px solid #555b4a;background:#000}
+.bar i:first-child{background:var(--lime)}
+.bar em{margin-left:10px;font:normal .78rem var(--body);color:var(--muted);background:#000;border-radius:999px;padding:2px 14px;flex:1;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view{height:clamp(240px,34vw,400px);overflow:hidden;position:relative;background:#000}
+.view img{display:block;width:100%;height:auto;transform:translateY(0);transition:transform 0s}
+.shot:hover .view img,.shot:focus-visible .view img{transform:translateY(var(--shift,0));transition:transform var(--dur,6s) cubic-bezier(.45,.05,.4,1)}
+.hint{position:absolute;right:12px;bottom:12px;background:var(--lime);color:#000;font:600 .78rem var(--body);padding:5px 12px;border-radius:999px;border:1.5px solid #000;transition:opacity .2s}
+.shot:hover .hint{opacity:0}
+
+.info .tag{display:inline-block;background:var(--lime);color:#000;border-radius:6px;padding:2px 10px;font-weight:600;font-size:.85rem;margin-bottom:18px}
+.info h2{font:700 clamp(1.8rem,3.4vw,2.7rem)/1.08 var(--head);letter-spacing:-.025em}
+.info p{color:var(--muted);margin:14px 0 26px;max-width:50ch}
+.link{font-weight:600;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.link:hover{background:var(--lime);color:#000}
+
+/* capability strip */
+.caps{padding:56px 0 8px}
+.caps h3{font:700 1.5rem var(--head);margin-bottom:20px;letter-spacing:-.02em}
+.capgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cap{background:var(--forest);border:1px solid #232d17;color:#e8efd9;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:12px}
+.cap[hidden]{display:none}
+.cap small{color:var(--lime);font-weight:600}
+.cap h4{font:700 1.5rem/1.15 var(--head);color:#fff}
+.cap p{font-size:.95rem;color:#c3cfae;flex:1}
+.cap a{color:var(--lime);font-weight:600;text-decoration:none;border-bottom:2px solid var(--lime);align-self:flex-start}
+
+
+.acts{display:flex;gap:14px;flex-wrap:wrap}
+.ghost{padding:11px 22px;border:1.5px solid #000;border-radius:999px;font-weight:600;text-decoration:none}
+.ghost:hover{background:#000;color:var(--lime)}
+footer{border-top:1px solid var(--line);margin-top:0;padding:28px 0;font-size:.9rem;color:var(--muted)}
+
+@media(max-width:860px){
+  .proj,.proj:nth-child(even){grid-template-columns:1fr;gap:28px}
+  .proj:nth-child(even) .shot{order:0}
+  .list{gap:56px}
+  .capgrid{grid-template-columns:1fr}
+  .shot{box-shadow:5px 5px 0 #1c2016}
+}
+@media(prefers-reduced-motion:reduce){
+  .shot,.shot:hover{transform:none;transition:none}
+  .shot:hover .view img{transition:none;transform:none}
+  .hint{display:none}
+}
+
+/* Only E-commerce and Branding cards side by side */
+.list-section .list > .proj[data-cat="ecommerce"],
+.list-section .list > .proj[data-cat="branding"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Keep other articles unchanged */
+.list-section .list > .proj:not([data-cat="ecommerce"]):not([data-cat="branding"]) {
+    /* Existing styles remain unchanged */
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .list-section .list > .proj[data-cat="ecommerce"],
+    .list-section .list > .proj[data-cat="branding"] {
+        grid-column: 1 / -1;
+    }
+}
+
+.service-projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .service-projects {
+        grid-template-columns: 1fr;
+    }
+}
+
+        </style>
     </head>
     <body id="top">
         <a class="skip-link" href="#main">Skip to content</a>
@@ -129,155 +243,229 @@
                     </p>
                 </div>
             </section>
-            <section class="section" data-aos="fade-up">
-                <div class="container">
-                    <div class="filter-bar" role="group" aria-label="Filter projects">
-                        <button class="filter" data-filter="all" aria-pressed="true">All work</button
-                        ><button class="filter" data-filter="web" aria-pressed="false">Web</button
-                        ><button class="filter" data-filter="education" aria-pressed="false">Education</button
-                        ><button class="filter" data-filter="corporate" aria-pressed="false">Corporate</button
-                        ><button class="filter" data-filter="ecommerce" aria-pressed="false">E-commerce</button
-                        ><button class="filter" data-filter="branding" aria-pressed="false">Branding</button>
-                    </div>
-                    <p class="sr-only" data-filter-status role="status">6 items shown</p>
-                    <div class="grid grid--2">
-                        <article class="project" data-category="web corporate">
-                            <a
-                                class="project__visual glightbox"
-                                href="assets/img/alashmal.webp"
-                                data-gallery="work"
-                                data-title="Alashmal Ad-agency — archive website"
-                                aria-label="Enlarge Alashmal Ad-agency archive screenshot"
-                                ><img
-                                    src="assets/img/alashmal.webp"
-                                    width="1024"
-                                    height="1500"
-                                    loading="lazy"
-                                    alt="Archived website design for Alashmal Ad-agency"
-                            /></a>
-                            <div class="project__info">
-                                <div>
-                                    <h3>Alashmal Ad-agency</h3>
-                                    <p>Corporate website · Archive selection</p>
-                                </div>
-                                <span class="project__arrow" aria-hidden="true"
-                                    ><span data-icon="diagonal" aria-hidden="true"></span
-                                ></span>
-                            </div>
-                            <div class="project__actions">
-                                <a href="portfolio-single.html?project=alashmal">View project context →</a>
-                            </div>
-                        </article>
-                        <article class="project" data-category="web education">
-                            <a
-                                class="project__visual glightbox"
-                                href="assets/img/sparkrill.webp"
-                                data-gallery="work"
-                                data-title="Sparkrill International — archive website"
-                                aria-label="Enlarge Sparkrill International archive screenshot"
-                                ><img
-                                    src="assets/img/sparkrill.webp"
-                                    width="700"
-                                    height="822"
-                                    loading="lazy"
-                                    alt="Archived website design for Sparkrill International"
-                            /></a>
-                            <div class="project__info">
-                                <div>
-                                    <h3>Sparkrill International</h3>
-                                    <p>Education website · Archive selection</p>
-                                </div>
-                                <span class="project__arrow" aria-hidden="true"
-                                    ><span data-icon="diagonal" aria-hidden="true"></span
-                                ></span>
-                            </div>
-                            <div class="project__actions">
-                                <a href="portfolio-single.html?project=sparkrill">View project context →</a>
-                            </div>
-                        </article>
-                        <article class="project" data-category="web education">
-                            <a
-                                class="project__visual glightbox"
-                                href="assets/img/jsm.webp"
-                                data-gallery="work"
-                                data-title="JSM High School — archive website"
-                                aria-label="Enlarge JSM High School archive screenshot"
-                                ><img
-                                    src="assets/img/jsm.webp"
-                                    width="1024"
-                                    height="768"
-                                    loading="lazy"
-                                    alt="Archived website design for JSM High School"
-                            /></a>
-                            <div class="project__info">
-                                <div>
-                                    <h3>JSM High School</h3>
-                                    <p>Education website · Archive selection</p>
-                                </div>
-                                <span class="project__arrow" aria-hidden="true"
-                                    ><span data-icon="diagonal" aria-hidden="true"></span
-                                ></span>
-                            </div>
-                            <div class="project__actions">
-                                <a href="portfolio-single.html?project=jsm">View project context →</a>
-                            </div>
-                        </article>
-                        <article class="project" data-category="web education">
-                            <a
-                                class="project__visual glightbox"
-                                href="assets/img/sr-engineering.webp"
-                                data-gallery="work"
-                                data-title="SR Engineering College — archive website"
-                                aria-label="Enlarge SR Engineering College archive screenshot"
-                                ><img
-                                    src="assets/img/sr-engineering.webp"
-                                    width="380"
-                                    height="790"
-                                    loading="lazy"
-                                    alt="Archived website design for SR Engineering College"
-                            /></a>
-                            <div class="project__info">
-                                <div>
-                                    <h3>SR Engineering College</h3>
-                                    <p>Institutional website · Archive selection</p>
-                                </div>
-                                <span class="project__arrow" aria-hidden="true"
-                                    ><span data-icon="diagonal" aria-hidden="true"></span
-                                ></span>
-                            </div>
-                            <div class="project__actions">
-                                <a href="portfolio-single.html?project=sr-engineering">View project context →</a>
-                            </div>
-                        </article>
-                        <article class="card" data-category="ecommerce">
-                            <p class="eyebrow">Historical client reference</p>
-                            <h3>Gifts2Door</h3>
-                            <p class="lead">
-                                E-commerce website work is referenced in the company’s published client feedback. A
-                                verified project screenshot and outcome report are not available in this archive.
-                            </p>
-                            <div class="mt-32">
-                                <a class="text-link" href="website-design.html"
-                                    >Explore e-commerce capabilities<span data-icon="arrow" aria-hidden="true"></span
-                                ></a>
-                            </div>
-                        </article>
-                        <article class="card" data-category="branding">
-                            <p class="eyebrow">Service capability</p>
-                            <h3>Branding & visual identity</h3>
-                            <p class="lead">
-                                Logo, brochure, poster and digital creative are published service capabilities. This
-                                category describes the service; it does not imply an unverified client branding project.
-                            </p>
-                            <div class="mt-32">
-                                <a class="text-link" href="graphic-design.html"
-                                    >Explore branding services<span data-icon="arrow" aria-hidden="true"></span
-                                ></a>
-                            </div>
-                        </article>
-                    </div>
+
+
+         
+<section class="container wrap list-section" aria-label="Portfolio projects">
+
+    <!-- Filter Buttons -->
+    <div class="filter-bar" role="group" aria-label="Filter projects">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">
+            All Work
+        </button>
+        <button class="filter" type="button" data-filter="web" aria-pressed="false">
+            Web
+        </button>
+        <button class="filter" type="button" data-filter="education" aria-pressed="false">
+            Education
+        </button>
+        <button class="filter" type="button" data-filter="corporate" aria-pressed="false">
+            Corporate
+        </button>
+        <button class="filter" type="button" data-filter="ecommerce" aria-pressed="false">
+            E-commerce
+        </button>
+        <button class="filter" type="button" data-filter="branding" aria-pressed="false">
+            Branding
+        </button>
+    </div>
+
+    <p class="sr-only" data-filter-status role="status" aria-live="polite">
+        6 projects shown
+    </p>
+
+    <!-- Projects Grid -->
+    <div class="list">
+
+        <article class="proj" data-cat="web corporate">
+            <a class="shot" href="portfolio-single.html?project=alashmal"
+               aria-label="Alashmal Ad-agency project context">
+                <div class="bar">
+                    <i></i><i></i><i></i><em>alashmal</em>
                 </div>
-            </section>
+                <div class="view">
+                    <img src="assets/img/alashmal.webp"
+                         alt="Archived website design for Alashmal Ad-agency"
+                         loading="lazy">
+                    <span class="hint">Hover to scroll</span>
+                </div>
+            </a>
+            <div class="info">
+                <span class="tag">Corporate</span>
+                <h2>Alashmal Ad-agency</h2>
+                <p>Corporate website from our archive selection.</p>
+                <a class="link" href="portfolio-single.html?project=alashmal">
+                    View project context
+                </a>
+            </div>
+        </article>
+
+        <article class="proj" data-cat="web education">
+            <a class="shot" href="portfolio-single.html?project=sparkrill"
+               aria-label="Sparkrill International project context">
+                <div class="bar">
+                    <i></i><i></i><i></i><em>sparkrill</em>
+                </div>
+                <div class="view">
+                    <img src="assets/img/sparkrill.webp"
+                         alt="Archived website design for Sparkrill International"
+                         loading="lazy">
+                    <span class="hint">Hover to scroll</span>
+                </div>
+            </a>
+            <div class="info">
+                <span class="tag">Education</span>
+                <h2>Sparkrill International</h2>
+                <p>Education website from our archive selection.</p>
+                <a class="link" href="portfolio-single.html?project=sparkrill">
+                    View project context
+                </a>
+            </div>
+        </article>
+
+        <article class="proj" data-cat="web education">
+            <a class="shot" href="portfolio-single.html?project=jsm"
+               aria-label="JSM High School project context">
+                <div class="bar">
+                    <i></i><i></i><i></i><em>jsm</em>
+                </div>
+                <div class="view">
+                    <img src="assets/img/jsm.webp"
+                         alt="Archived website design for JSM High School"
+                         loading="lazy">
+                    <span class="hint">Hover to scroll</span>
+                </div>
+            </a>
+            <div class="info">
+                <span class="tag">Education</span>
+                <h2>JSM High School</h2>
+                <p>Education website from our archive selection.</p>
+                <a class="link" href="portfolio-single.html?project=jsm">
+                    View project context
+                </a>
+            </div>
+        </article>
+
+        <article class="proj" data-cat="web education">
+            <a class="shot" href="portfolio-single.html?project=sr-engineering"
+               aria-label="SR Engineering College project context">
+                <div class="bar">
+                    <i></i><i></i><i></i><em>sr-engineering</em>
+                </div>
+                <div class="view">
+                    <img src="assets/img/sr-engineering.webp"
+                         alt="Archived website design for SR Engineering College"
+                         loading="lazy">
+                    <span class="hint">Hover to scroll</span>
+                </div>
+            </a>
+            <div class="info">
+                <span class="tag">Education</span>
+                <h2>SR Engineering College</h2>
+                <p>Institutional website from our archive selection.</p>
+                <a class="link" href="portfolio-single.html?project=sr-engineering">
+                    View project context
+                </a>
+            </div>
+        </article>
+
+        <!-- E-commerce -->
+      
+<!-- E-commerce + Branding: side-by-side cards -->
+<div class="service-projects">
+
+    <article class="proj" data-cat="ecommerce">
+        <div class="info">
+            <span class="tag">E-commerce</span>
+            <h2>Gifts2Door</h2>
+            <p>
+                E-commerce website work is referenced in published
+                client feedback. A verified project screenshot
+                is not available in this archive.
+            </p>
+            <a class="link" href="website-design.html">
+                Explore e-commerce capabilities →
+            </a>
+        </div>
+    </article>
+
+    <article class="proj" data-cat="branding">
+        <div class="info">
+            <span class="tag">Branding</span>
+            <h2>Branding &amp; Visual Identity</h2>
+            <p>
+                Explore logo design, brochures, posters and digital
+                creative services.
+            </p>
+            <a class="link" href="graphic-design.html">
+                Explore branding services →
+            </a>
+        </div>
+    </article>
+
+</div>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(
+        ".list-section .filter"
+    );
+
+    const projects = document.querySelectorAll(
+        ".list-section .proj"
+    );
+
+    const status = document.querySelector(
+        ".list-section [data-filter-status]"
+    );
+
+    filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const selectedFilter = this.dataset.filter;
+            let visibleCount = 0;
+
+            filterButtons.forEach(function (item) {
+                const isActive = item === button;
+
+                item.classList.toggle("active", isActive);
+                item.setAttribute(
+                    "aria-pressed",
+                    isActive ? "true" : "false"
+                );
+            });
+
+            projects.forEach(function (project) {
+                const categories = (
+                    project.dataset.cat || ""
+                ).split(/\s+/);
+
+                const shouldShow =
+                    selectedFilter === "all" ||
+                    categories.includes(selectedFilter);
+
+                project.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+            });
+
+            if (status) {
+                status.textContent =
+                    visibleCount + (
+                        visibleCount === 1
+                            ? " project shown"
+                            : " projects shown"
+                    );
+            }
+        });
+    });
+});
+</script>
+
             <section class="section" data-aos="fade-up">
                 <div class="container">
                     <div class="cta-band">

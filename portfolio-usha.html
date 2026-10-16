@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Design Portfolio | Kakatiya Solutions</title>
+<meta name="description" content="Browse website work for Alashmal, Sparkrill International, JSM High School and SR Engineering College in the Kakatiya Solutions portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#000000; --card:#0b0d08; --ink:#f4f6ee; --muted:#9aa18f;
+  --line:#262a20; --lime:#c8f31d; --forest:#0f1609; --dark:#000;
+  --head:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:400 1rem/1.6 var(--body);color:var(--ink);background:var(--paper);color-scheme:dark;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+
+/* header */
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand{font:700 1.4rem/1 var(--head);text-decoration:none;letter-spacing:-.02em}
+.brand span{background:var(--lime);color:#000;padding:2px 8px;border-radius:6px;margin-right:4px}
+.nav{display:flex;gap:28px;align-items:center;font-size:.95rem;font-weight:500}
+.nav a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover,.nav a[aria-current]{border-color:var(--ink)}
+.btn{display:inline-block;background:var(--lime);color:#000!important;padding:11px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:0!important;transition:background .2s,color .2s}
+.btn:hover{background:#fff;color:#000!important}
+@media(max-width:860px){.nav a:not(.btn){display:none}}
+
+/* intro */
+.intro{padding:72px 0 40px}
+.crumb{font-size:.9rem;color:var(--muted);margin-bottom:20px}
+.crumb a{text-decoration:none}
+.intro h1{font:700 clamp(2.4rem,6vw,4.6rem)/1.02 var(--head);letter-spacing:-.035em;max-width:14ch}
+.intro p{max-width:56ch;color:var(--muted);margin-top:22px;font-size:1.1rem}
+
+/* filter */
+.filters{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:14px 0}
+.filters .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{font:500 .92rem var(--body);background:transparent;border:1.5px solid var(--ink);color:var(--ink);padding:8px 18px;border-radius:999px;cursor:pointer;transition:background .15s}
+.chip:hover{background:#1a1d15}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.count{margin-left:auto;font-size:.9rem;color:var(--muted)}
+
+/* project rows */
+.list{padding:56px 0 24px;display:grid;gap:72px}
+.proj{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:center}
+.proj:nth-child(even){grid-template-columns:5fr 7fr}
+.proj:nth-child(even) .shot{order:2}
+.proj[hidden]{display:none}
+
+.shot{display:block;text-decoration:none;background:var(--card);border:1.5px solid #3a3f31;border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 #1c2016;transition:transform .25s,box-shadow .25s}
+.shot:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--lime);border-color:var(--lime)}
+.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1.5px solid #3a3f31;background:#12150d}
+.bar i{width:10px;height:10px;border-radius:50%;border:1.5px solid #555b4a;background:#000}
+.bar i:first-child{background:var(--lime)}
+.bar em{margin-left:10px;font:normal .78rem var(--body);color:var(--muted);background:#000;border-radius:999px;padding:2px 14px;flex:1;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view{height:clamp(240px,34vw,400px);overflow:hidden;position:relative;background:#000}
+.view img{display:block;width:100%;height:auto;transform:translateY(0);transition:transform 0s}
+.shot:hover .view img,.shot:focus-visible .view img{transform:translateY(var(--shift,0));transition:transform var(--dur,6s) cubic-bezier(.45,.05,.4,1)}
+.hint{position:absolute;right:12px;bottom:12px;background:var(--lime);color:#000;font:600 .78rem var(--body);padding:5px 12px;border-radius:999px;border:1.5px solid #000;transition:opacity .2s}
+.shot:hover .hint{opacity:0}
+
+.info .tag{display:inline-block;background:var(--lime);color:#000;border-radius:6px;padding:2px 10px;font-weight:600;font-size:.85rem;margin-bottom:18px}
+.info h2{font:700 clamp(1.8rem,3.4vw,2.7rem)/1.08 var(--head);letter-spacing:-.025em}
+.info p{color:var(--muted);margin:14px 0 26px;max-width:40ch}
+.link{font-weight:600;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.link:hover{background:var(--lime);color:#000}
+
+/* capability strip */
+.caps{padding:56px 0 8px}
+.caps h3{font:700 1.5rem var(--head);margin-bottom:20px;letter-spacing:-.02em}
+.capgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cap{background:var(--forest);border:1px solid #232d17;color:#e8efd9;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:12px}
+.cap[hidden]{display:none}
+.cap small{color:var(--lime);font-weight:600}
+.cap h4{font:700 1.5rem/1.15 var(--head);color:#fff}
+.cap p{font-size:.95rem;color:#c3cfae;flex:1}
+.cap a{color:var(--lime);font-weight:600;text-decoration:none;border-bottom:2px solid var(--lime);align-self:flex-start}
+
+/* cta */
+.cta{margin:72px 0 0;background:var(--lime);color:#000}
+.cta .btn{background:#000;color:#fff!important}
+.cta .btn:hover{background:#fff;color:#000!important}
+.cta .wrap{padding-top:72px;padding-bottom:72px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta h2{font:700 clamp(2rem,5vw,3.6rem)/1.04 var(--head);letter-spacing:-.03em;max-width:15ch}
+.cta p{margin-top:12px;max-width:34ch}
+.acts{display:flex;gap:14px;flex-wrap:wrap}
+.ghost{padding:11px 22px;border:1.5px solid #000;border-radius:999px;font-weight:600;text-decoration:none}
+.ghost:hover{background:#000;color:var(--lime)}
+footer{border-top:1px solid var(--line);margin-top:0;padding:28px 0;font-size:.9rem;color:var(--muted)}
+
+@media(max-width:860px){
+  .proj,.proj:nth-child(even){grid-template-columns:1fr;gap:28px}
+  .proj:nth-child(even) .shot{order:0}
+  .list{gap:56px}
+  .capgrid{grid-template-columns:1fr}
+  .shot{box-shadow:5px 5px 0 #1c2016}
+}
+@media(prefers-reduced-motion:reduce){
+  .shot,.shot:hover{transform:none;transition:none}
+  .shot:hover .view img{transition:none;transform:none}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span>K</span>Kakatiya</a>
+    <nav class="nav" aria-label="Main">
+      <a href="about.html">Company</a>
+      <a href="services.html">Solutions</a>
+      <a href="portfolio.html" aria-current="page">Work</a>
+      <a href="clients.html">Clients</a>
+      <a href="blog.html">Insights</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn" href="quote.html">Get a quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="intro">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Home</a> / Our work</p>
+      <h1>Different ambitions. A considered response.</h1>
+      <p>Explore a selection from our published project archive. Original screenshots preserve each site as it appeared at the time. Hover a screen to scroll through the full page.</p>
+    </div>
+  </section>
+
+  <div class="filters">
+    <div class="wrap" role="group" aria-label="Filter projects">
+      <button class="chip" data-f="all" aria-pressed="true">All work</button>
+      <button class="chip" data-f="web" aria-pressed="false">Web</button>
+      <button class="chip" data-f="education" aria-pressed="false">Education</button>
+      <button class="chip" data-f="corporate" aria-pressed="false">Corporate</button>
+      <button class="chip" data-f="ecommerce" aria-pressed="false">E-commerce</button>
+      <button class="chip" data-f="branding" aria-pressed="false">Branding</button>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <section class="wrap list" aria-label="Projects">
+    <article class="proj" data-cat="web corporate">
+      <a class="shot" href="portfolio-single.html?project=alashmal" aria-label="Alashmal Ad-agency project context">
+        <div class="bar"><i></i><i></i><i></i><em>alashmal</em></div>
+        <div class="view"><img src="assets/img/alashmal.webp" alt="Archived website design for Alashmal Ad-agency" loading="lazy"><span class="hint">Hover to scroll</span></div>
+      </a>
+      <div class="info">
+        <span class="tag">Corporate</span>
+        <h2>Alashmal Ad-agency</h2>
+        <p>Corporate website from our archive selection.</p>
+        <a class="link" href="portfolio-single.html?project=alashmal">View project context</a>
+      </div>
+    </article>
+
+    <article class="proj" data-cat="web education">
+      <a class="shot" href="portfolio-single.html?project=sparkrill" aria-label="Sparkrill International project context">
+        <div class="bar"><i></i><i></i><i></i><em>sparkrill</em></div>
+        <div class="view"><img src="assets/img/sparkrill.webp" alt="Archived website design for Sparkrill International" loading="lazy"><span class="hint">Hover to scroll</span></div>
+      </a>
+      <div class="info">
+        <span class="tag">Education</span>
+        <h2>Sparkrill International</h2>
+        <p>Education website from our archive selection.</p>
+        <a class="link" href="portfolio-single.html?project=sparkrill">View project context</a>
+      </div>
+    </article>
+
+    <article class="proj" data-cat="web education">
+      <a class="shot" href="portfolio-single.html?project=jsm" aria-label="JSM High School project context">
+        <div class="bar"><i></i><i></i><i></i><em>jsm</em></div>
+        <div class="view"><img src="assets/img/jsm.webp" alt="Archived website design for JSM High School" loading="lazy"><span class="hint">Hover to scroll</span></div>
+      </a>
+      <div class="info">
+        <span class="tag">Education</span>
+        <h2>JSM High School</h2>
+        <p>Education website from our archive selection.</p>
+        <a class="link" href="portfolio-single.html?project=jsm">View project context</a>
+      </div>
+    </article>
+
+    <article class="proj" data-cat="web education">
+      <a class="shot" href="portfolio-single.html?project=sr-engineering" aria-label="SR Engineering College project context">
+        <div class="bar"><i></i><i></i><i></i><em>sr-engineering</em></div>
+        <div class="view"><img src="assets/img/sr-engineering.webp" alt="Archived website design for SR Engineering College" loading="lazy"><span class="hint">Hover to scroll</span></div>
+      </a>
+      <div class="info">
+        <span class="tag">Education</span>
+        <h2>SR Engineering College</h2>
+        <p>Institutional website from our archive selection.</p>
+        <a class="link" href="portfolio-single.html?project=sr-engineering">View project context</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap caps" aria-label="Related capabilities">
+    <h3>Beyond the archive</h3>
+    <div class="capgrid">
+      <div class="cap" data-cat="ecommerce web">
+        <small>Historical client reference</small>
+        <h4>Gifts2Door</h4>
+        <p>E-commerce website work is referenced in the company’s published client feedback. A verified project screenshot and outcome report are not available in this archive.</p>
+        <a href="website-design.html">Explore e-commerce capabilities</a>
+      </div>
+      <div class="cap" data-cat="branding">
+        <small>Service capability</small>
+        <h4>Branding &amp; visual identity</h4>
+        <p>Logo, brochure, poster and digital creative are published service capabilities. This describes the service; it does not imply an unverified client branding project.</p>
+        <a href="graphic-design.html">Explore branding services</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <h2>Let’s build something extraordinary.</h2>
+      <p>Bring the ambition. We’ll help shape the next move.</p>
+    </div>
+    <div class="acts">
+      <a class="btn" href="quote.html">Tell us about your project</a>
+      <a class="ghost" href="contact.html">Or, let’s talk</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">&copy; Kakatiya Solutions</div></footer>
+
+<script>
+(function(){
+  var chips=document.querySelectorAll('.chip'),
+      projs=document.querySelectorAll('.proj'),
+      caps=document.querySelectorAll('.cap'),
+      capSec=document.querySelector('.caps'),
+      count=document.getElementById('count');
+
+  function filter(f){
+    var n=0;
+    projs.forEach(function(p){
+      var show=f==='all'||p.dataset.cat.split(' ').indexOf(f)>-1;
+      p.hidden=!show; if(show)n++;
+    });
+    var cs=0;
+    caps.forEach(function(c){
+      var show=f==='all'||c.dataset.cat.split(' ').indexOf(f)>-1;
+      c.hidden=!show; if(show)cs++;
+    });
+    capSec.hidden=cs===0;
+    count.textContent=n+(n===1?' project':' projects')+(cs?' + '+cs+' reference'+(cs>1?'s':''):'');
+    measure();
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed','true');
+      filter(c.dataset.f);
+    });
+  });
+
+  /* scroll-on-hover distance = image height minus window height */
+  function measure(){
+    document.querySelectorAll('.shot').forEach(function(s){
+      var img=s.querySelector('img'),v=s.querySelector('.view');
+      var d=Math.max(0,img.getBoundingClientRect().height-v.clientHeight);
+      s.style.setProperty('--shift',-d+'px');
+      s.style.setProperty('--dur',Math.min(14,Math.max(4,d/180))+'s');
+    });
+  }
+  document.querySelectorAll('.shot img').forEach(function(i){
+    if(i.complete)measure(); else i.addEventListener('load',measure);
+  });
+  window.addEventListener('resize',measure);
+  filter('all');
+})();
+</script>
+</body>
+</html>
